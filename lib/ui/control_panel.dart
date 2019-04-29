@@ -1,4 +1,5 @@
 import 'package:easycode/ui/block_reservoir.dart';
+import 'package:easycode/ui/exec_screen.dart';
 import 'package:flutter/material.dart';
 
 class ControlPanel extends StatefulWidget {
@@ -26,11 +27,13 @@ class _ControlPanelState extends State<ControlPanel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Available Blocks",
+                  runScreen ? "Run Code" : "Available Blocks",
                   style: TextStyle(fontSize: 24),
                 ),
                 SizedBox(height: 10),
-                BlockReservoir(),
+                Expanded(
+                  child: runScreen ? ExecScreen() : BlockReservoir(),
+                ),
               ],
             ),
             Spacer(),

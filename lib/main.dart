@@ -1,3 +1,4 @@
+import 'package:easycode/app_state.dart';
 import 'package:easycode/ui/action_block.dart';
 import 'package:easycode/ui/block_reservoir.dart';
 import 'package:easycode/ui/code_space.dart';
@@ -6,6 +7,7 @@ import 'package:easycode/ui/if_else_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easycode/code.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,6 +15,8 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
+
+var appState = AppState();
 
 class _MyAppState extends State<MyApp> {
   @override
@@ -42,9 +46,13 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SafeArea(
-          child: MyHomePage(),
+          child: ChangeNotifierProvider<AppState>.value(
+            notifier: appState,
+            child: MyHomePage(),
+          ),
         ),
       ),
     );
@@ -71,56 +79,6 @@ class MyHomePage extends StatelessWidget {
             child: ControlPanel(),
           ),
         ),
-      ],
-    );
-  }
-}
-
-class CodeSpace extends StatefulWidget {
-  @override
-  _CodeSpaceState createState() => _CodeSpaceState();
-}
-
-class _CodeSpaceState extends State<CodeSpace> {
-  List<CodeElement> code;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-      child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              IfElseBlock(
-                ifStructure: IfStructure()
-                  ..sensor = Sensor(name: "Wall")
-                  ..ifCode = []
-                  ..elseCode = [Action(name: "Sleep")]
-                  ..endIf = true,
-              ),
-              ActionBlock(
-                action: Action(name: "Walk"),
-              )
-            ],
-          )),
-    );
-  }
-}
-
-class Reservoir extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        //Draggable(
-        //child: WalkBlock(),
-        //feedback: WalkBlock(),
-        //)
       ],
     );
   }

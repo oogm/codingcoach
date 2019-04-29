@@ -1,6 +1,5 @@
 abstract class CodeElement {
   final String name;
-  bool currentLine;
 
   CodeElement({this.name});
 }

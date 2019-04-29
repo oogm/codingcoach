@@ -104,11 +104,11 @@ class _BlockReservoirState extends State<BlockReservoir> {
   }
 
   Widget _buildIfActionButtons(AppState app) {
-    if (app.currentContainer?.name != "If") {
+    if (app.currentEditContainer?.name != "If") {
       return Container();
     }
 
-    var ifStructure = app.currentContainer as IfStructure;
+    var ifStructure = app.currentEditContainer as IfStructure;
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +189,7 @@ class _BlockReservoirState extends State<BlockReservoir> {
   }
 
   Widget _buildWhileActionButton(AppState app) {
-    if (app.currentContainer?.name != "While") {
+    if (app.currentEditContainer?.name != "While") {
       return Container();
     }
 
