@@ -21,7 +21,28 @@ class _GridState extends State<Grid> {
     ['', '', '', '', 'T', '', '', ''],
     ['P1', '', '', '', '', '', 'T', ''],
   ];
+  Timer _timer;
+  int _position = 0;
   
+  void initState() {
+    startTimer();
+  }
+
+  //Timer to execute the code:
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(
+        oneSec,
+        (Timer timer) => setState(() {
+              print('Tick');
+              _position++;
+              _position = _position % (gridState.length*gridState.length);
+              int x = _position ~/ gridState.length;
+              int y = _position % gridState.length;
+              gridState[y][x] = 'T';
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     final title = 'Grid List';
@@ -37,7 +58,7 @@ class _GridState extends State<Grid> {
     );
   }
 
-  //Helpers
+  //Helpers for board building
   Widget _buildGameBody() {
     int gridStateLength = gridState.length;
     return Column(
