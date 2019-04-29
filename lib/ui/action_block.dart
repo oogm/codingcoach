@@ -34,10 +34,6 @@ class ActionBlock extends StatelessWidget {
             ),
           ),
         ),
-
-        /*Consumer<AppState>(builder:(context, app) {
-          return Visibility(visible: app.lastExecutedElement == ,)
-        })*/
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:easycode/app_state.dart';
+import 'package:easycode/base_app.dart';
 import 'package:easycode/ui/action_block.dart';
 import 'package:easycode/ui/block_reservoir.dart';
 import 'package:easycode/ui/code_space.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:easycode/code.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Introduction());
 
 class MyApp extends StatefulWidget {
   @override

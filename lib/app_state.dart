@@ -26,7 +26,7 @@ class AppState extends ChangeNotifier {
   CodeElement _currentEditContainer;
   CodeElement get currentEditContainer => _currentEditContainer;
 
-  List<GridItem> _gridItems = [Player(x: 0, y: 0)];
+  List<GridItem> _gridItems = [Player(x: 0, y: 0), Obstacle(x: 2, y: 0), Target(x: 2, y: 2)];
   List<GridItem> get gridItems => _gridItems;
   set gridItems(List<GridItem> items) {
     _gridItems = items;
@@ -163,6 +163,7 @@ class AppState extends ChangeNotifier {
       } else if (next.name == "Turn") {
         getPlayer().rotation += 90;
         getPlayer().rotation = getPlayer().rotation % 360;
+        notifyListeners();
       }
     } else if (next is IfStructure) {
       execIf(next);

@@ -14,3 +14,7 @@ class Player extends GridItem {
 class Obstacle extends GridItem {
   Obstacle({int x, int y}) : super(x: x, y: y);
 }
+
+class Target extends GridItem {
+  Target({int x, int y}) : super(x: x, y: y);
+}

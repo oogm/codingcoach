@@ -11,38 +11,6 @@ class Grid extends StatefulWidget {
 }
 
 class _GridState extends State<Grid> {
-  var gridState = [
-    ['T', 'T', '', '', '', '', '', ''],
-    ['', '', '', 'T', '', '', ''],
-    ['B', 'T', '', '', '', 'B', ''],
-    ['', '', '', 'B', '', '', ''],
-    ['', '', 'T', '', '', 'T', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', 'T', '', ''],
-  ];
-  Timer _timer;
-  int _position = 0;
-
-  void initState() {
-    super.initState();
-    //startTimer();
-  }
-
-  //Timer to execute the code:
-  void startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    _timer = new Timer.periodic(
-        oneSec,
-        (Timer timer) => setState(() {
-              print('Tick');
-              _position++;
-              _position = _position % (gridState.length * gridState.length);
-              int x = _position ~/ gridState.length;
-              int y = _position % gridState.length;
-              gridState[y][x] = 'T';
-            }));
-  }
-
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -75,7 +43,7 @@ class _GridState extends State<Grid> {
             child: Center(
               child: Visibility(
                 visible: item != null,
-                child: _buildGridItem(item),
+                child: _buildGridItem(app, item),
               ),
             ),
           ),
@@ -84,9 +52,24 @@ class _GridState extends State<Grid> {
     );
   }
 
-  Widget _buildGridItem(GridItem item) {
+  Widget _buildGridItem(AppState app, GridItem item) {
     if (item is Player) {
+      return RotatedBox(
+        quarterTurns: app.getPlayer().rotation ~/ 90 - 1,
+        child: Icon(
+          Icons.arrow_forward_ios,
+          size: 30,
+          color: Colors.red,
+        ),
+      );
+    } else if (item is Obstacle) {
       return Container(
+        color: Colors.grey,
+      );
+    } else if (item is Target) {
+      return Icon(
+        Icons.flag,
+        size: 30,
         color: Colors.blue,
       );
     } else {
