@@ -25,7 +25,23 @@ class _CodeSpaceState extends State<CodeSpace> {
           ),
           child: Padding(
             padding: EdgeInsets.all(15),
-            child: _buildCode(app),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: _buildCode(app),
+                    reverse: true,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    app.clean();
+                  },
+                  icon: Icon(Icons.delete),
+                ),
+              ],
+            ),
           ),
         );
       },

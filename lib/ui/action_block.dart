@@ -9,18 +9,22 @@ class ActionBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: CodeColors.action,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-      ),
-      child: SizedBox(
-        width: 150,
-        height: 25,
-        child: Center(
-          child: Text(
-            action.name,
-            style: TextStyle(fontWeight: FontWeight.bold),
+    return Padding(
+      padding: EdgeInsets.only(top: 2, bottom: 2),
+      child: Card(
+        margin: EdgeInsets.zero,
+        color: CodeColors.action,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+        ),
+        child: SizedBox(
+          width: 150,
+          height: 25,
+          child: Center(
+            child: Text(
+              action.name,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
         ),
       ),

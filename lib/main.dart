@@ -2,6 +2,7 @@ import 'package:easycode/app_state.dart';
 import 'package:easycode/ui/action_block.dart';
 import 'package:easycode/ui/block_reservoir.dart';
 import 'package:easycode/ui/code_space.dart';
+import 'package:easycode/ui/control_panel.dart';
 import 'package:easycode/ui/if_else_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   @override
@@ -66,14 +68,14 @@ class MyHomePage extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: CodeSpace(),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: BlockReservoir(),
+            padding: const EdgeInsets.all(10.0),
+            child: ControlPanel(),
           ),
         ),
       ],

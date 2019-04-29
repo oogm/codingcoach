@@ -4,10 +4,10 @@ import 'package:easycode/ui/sensor_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:easycode/code.dart';
 
-class IfElseBlock extends StatelessWidget {
-  final IfStructure ifStructure;
+class WhileBlock extends StatelessWidget {
+  final WhileStructure whileStructure;
 
-  IfElseBlock({this.ifStructure});
+  WhileBlock({this.whileStructure});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class IfElseBlock extends StatelessWidget {
         children: <Widget>[
           Card(
             margin: EdgeInsets.zero,
-            color: CodeColors.ifElse,
+            color: CodeColors.whileLoop,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5),
@@ -36,17 +36,17 @@ class IfElseBlock extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(width: 15),
                     Text(
-                      "If",
+                      "While",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Spacer(),
                     SizedBox(
                       width: 100,
-                      child: SensorBadge(sensor: ifStructure.sensor),
+                      child: SensorBadge(sensor: whileStructure.sensor),
                     ),
                     Spacer(),
                     Text(
-                      "Then",
+                      "Do",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(width: 10),
@@ -56,62 +56,22 @@ class IfElseBlock extends StatelessWidget {
             ),
           ),
           CodeBlock(
-            code: ifStructure.ifCode,
-            barColor: CodeColors.ifElse,
+            code: whileStructure.code,
+            barColor: CodeColors.whileLoop,
           ),
           Visibility(
-            visible: ifStructure.elseCode.isNotEmpty || ifStructure.elseActive,
-            child: _buildElse(),
-          ),
-          Visibility(
-            visible: ifStructure.endIf,
-            child: _buildEndIf(),
+            visible: whileStructure.endWhile,
+            child: _buildEndWhile(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildElse() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Card(
-          margin: EdgeInsets.zero,
-          color: CodeColors.ifElse,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(5),
-              bottomRight: Radius.circular(5),
-            ),
-          ),
-          child: SizedBox(
-            width: 70,
-            height: 20,
-            child: Row(
-              children: <Widget>[
-                SizedBox(width: 14),
-                Text(
-                  "Else",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
-        CodeBlock(
-          code: ifStructure.elseCode,
-          barColor: CodeColors.ifElse,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildEndIf() {
+  Widget _buildEndWhile() {
     return Card(
       margin: EdgeInsets.zero,
-      color: CodeColors.ifElse,
+      color: CodeColors.whileLoop,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -127,7 +87,7 @@ class IfElseBlock extends StatelessWidget {
           children: <Widget>[
             SizedBox(width: 14),
             Text(
-              "End If",
+              "End While",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
