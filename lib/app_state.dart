@@ -134,7 +134,17 @@ class AppState extends ChangeNotifier {
     var next = _findNextActionInContainer();
     if (next == null) {
       var lastStackElement = _runListStack.removeLast();
-      _lastExecutedElement = lastStackElement.runContainer;
+      if (lastStackElement.runContainer is WhileStructure) {
+        var runList = _runListStack.last.runList;
+        var indexOfWhile = runList.indexOf(lastStackElement.runContainer);
+        if (indexOfWhile == 0) {
+          _lastExecutedElement = null;
+        } else {
+          _lastExecutedElement = runList[indexOfWhile - 1];
+        }
+      } else {
+        _lastExecutedElement = lastStackElement.runContainer;
+      }
 
       if (_runListStack.isEmpty) {
         return null;
@@ -156,6 +166,10 @@ class AppState extends ChangeNotifier {
       }
     } else if (next is IfStructure) {
       execIf(next);
+      notifyListeners();
+      return false;
+    } else if (next is WhileStructure) {
+      execWhile(next);
       notifyListeners();
       return false;
     }
@@ -217,6 +231,16 @@ class AppState extends ChangeNotifier {
     } else {
       if (ifStructure.elseCode.isNotEmpty) {
         _runListStack.add(StackEntry(ifStructure, ifStructure.elseCode));
+        _lastExecutedElement = null;
+      }
+    }
+  }
+
+  void execWhile(WhileStructure whileStructure) {
+    var sensorValue = _execSensor(whileStructure.sensor);
+    if (sensorValue) {
+      if (whileStructure.code.isNotEmpty) {
+        _runListStack.add(StackEntry(whileStructure, whileStructure.code));
         _lastExecutedElement = null;
       }
     }
