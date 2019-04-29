@@ -134,6 +134,7 @@ class AppState extends ChangeNotifier {
       Obstacle(x: 0, y: 5),
       Target(x: 2, y: 3),
     ];
+    _hungry = true;
     notifyListeners();
   }
 
