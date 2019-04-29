@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   @override
@@ -66,13 +67,13 @@ class MyHomePage extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: CodeSpace(),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: BlockReservoir(),
           ),
         ),

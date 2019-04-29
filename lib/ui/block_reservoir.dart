@@ -42,11 +42,13 @@ class _BlockReservoirState extends State<BlockReservoir> {
                   visible: app.availableElements("Turn") > 0,
                   child: _buildActionButton(app, "Turn"),
                 ),
+                _buildIfButton(app),
+                _buildIfActionButtons(app),
                 Visibility(
-                  visible: app.availableElements("If") > 0,
-                  child: _buildIfButton(app),
+                  visible: app.availableElements("While") > 0,
+                  child: _buildWhileButton(app),
                 ),
-                _buildIfActionButtons(app)
+                _buildWhileActionButton(app),
               ],
             ),
           ),
@@ -90,6 +92,7 @@ class _BlockReservoirState extends State<BlockReservoir> {
               onPressed: () {
                 setState(() {
                   ifSensorSelection = true;
+                  whileSensorSelection = false;
                 });
               },
               color: CodeColors.ifElse,
@@ -107,6 +110,7 @@ class _BlockReservoirState extends State<BlockReservoir> {
         app.addElement(IfStructure(sensor: sensor));
         setState(() {
           ifSensorSelection = false;
+          whileSensorSelection = false;
         });
       }),
     );
@@ -115,51 +119,109 @@ class _BlockReservoirState extends State<BlockReservoir> {
   Widget _buildIfActionButtons(AppState app) {
     if (app.currentContainer?.name != "If") {
       return Container();
-    } else {
-      var ifStructure = app.currentContainer as IfStructure;
-      return Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Visibility(
-            visible: !ifStructure.elseActive,
-            child: SizedBox(
-              width: 100,
-              child: RaisedButton(
-                onPressed: () {
-                  app.elseIf();
-                  setState(() {
-                    ifSensorSelection = false;
-                  });
-                },
-                color: CodeColors.ifElse,
-                child: Text(
-                  "Else",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10),
-          SizedBox(
+    }
+
+    var ifStructure = app.currentContainer as IfStructure;
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Visibility(
+          visible: !ifStructure.elseActive,
+          child: SizedBox(
             width: 100,
             child: RaisedButton(
               onPressed: () {
-                app.endIf();
+                app.elseIf();
                 setState(() {
                   ifSensorSelection = false;
                 });
               },
               color: CodeColors.ifElse,
               child: Text(
-                "End If",
+                "Else",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
           ),
+        ),
+        SizedBox(width: 10),
+        SizedBox(
+          width: 100,
+          child: RaisedButton(
+            onPressed: () {
+              app.endIf();
+              setState(() {
+                ifSensorSelection = false;
+              });
+            },
+            color: CodeColors.ifElse,
+            child: Text(
+              "End If",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWhileButton(AppState app) {
+    return Visibility(
+      visible: !whileSensorSelection,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(
+            width: 150,
+            child: RaisedButton(
+              onPressed: () {
+                setState(() {
+                  whileSensorSelection = true;
+                  ifSensorSelection = false;
+                });
+              },
+              color: CodeColors.whileLoop,
+              child: Text(
+                "While",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          SizedBox(width: 10),
+          Text("${app.availableElements("While")}x"),
         ],
-      );
+      ),
+      replacement: _buildSensorSelection((sensor) {
+        app.addElement(WhileStructure(sensor: sensor));
+        setState(() {
+          whileSensorSelection = false;
+        });
+      }),
+    );
+  }
+
+  Widget _buildWhileActionButton(AppState app) {
+    if (app.currentContainer?.name != "While") {
+      return Container();
     }
+
+    return SizedBox(
+      width: 100,
+      child: RaisedButton(
+        onPressed: () {
+          app.endWhile();
+          setState(() {
+            whileSensorSelection = false;
+          });
+        },
+        color: CodeColors.whileLoop,
+        child: Text(
+          "End While",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
   }
 
   Widget _buildSensorSelection(SensorCallback callback) {

@@ -68,7 +68,11 @@ class AppState extends ChangeNotifier {
       whileStructure.code.add(code);
     }
 
-    if (code is IfStructure || code is WhileStructure) {
+    if (code is IfStructure) {
+      code.parent = _currentContainer;
+      _currentContainer = code;
+    } else if (code is WhileStructure) {
+      code.parent = _currentContainer;
       _currentContainer = code;
     }
     notifyListeners();
@@ -84,6 +88,19 @@ class AppState extends ChangeNotifier {
   void elseIf() {
     var ifStructure = _currentContainer as IfStructure;
     ifStructure.elseActive = true;
+    notifyListeners();
+  }
+
+  void endWhile() {
+    var whileStructure = _currentContainer as WhileStructure;
+    whileStructure.endWhile = true;
+    _currentContainer = whileStructure.parent;
+    notifyListeners();
+  }
+
+  void clean() {
+    _codeList = [];
+    _currentContainer = null;
     notifyListeners();
   }
 }
