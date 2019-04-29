@@ -67,11 +67,7 @@ class _GridState extends State<Grid> {
         color: Colors.grey,
       );
     } else if (item is Target) {
-      return Icon(
-        Icons.flag,
-        size: 30,
-        color: Colors.blue,
-      );
+      return Image.asset('assets/Images/banana.png');
     } else {
       return Container();
     }

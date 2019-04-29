@@ -23,7 +23,7 @@ class BaseAppWidget extends StatefulWidget {
 class BaseAppState extends State<BaseAppWidget> {
   VideoPlayerController _controller;
   bool _isPlaying = false;
-  List<String> _products = ['While (Codrilla is hungry) \n     Codrilla eats one more banana'];
+  List<String> _products = ['While (Codrilla is hungry) \n     Codrilla walks to banana'];
   @override
   void initState() {
     super.initState();
@@ -46,7 +46,7 @@ class BaseAppState extends State<BaseAppWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Lecture 2: While Loops',
+          'Level 6: While Loops',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black.withOpacity(0.8),
@@ -81,11 +81,13 @@ class BaseAppState extends State<BaseAppWidget> {
                   children: <TextSpan>[
                     new TextSpan(
                         text:
-                            'Codzilla the Gorilla loves bananas. And he´s hungry. Just one banana surely will not be enough for him. Using what we´ve learned in Lecture 1, we could feed him, by simply calling the'),
-                    new TextSpan(text: ' Eat Banana ', style: new TextStyle(fontWeight: FontWeight.bold)),
+                            'Codrilla the Gorilla loves bananas. And he´s hungry. To let him find a banana, we have to help him navigating thorugh the jungle to find bananas. Utilizing Actions from Level 3, we could simply guide him step by step.'),
+                    // new TextSpan(
+                    //   text: ' Eat Banana ',
+                    //   style: new TextStyle(fontWeight: FontWeight.bold)),
                     new TextSpan(
                         text:
-                            "action multiple times. This would require writing a lot of lines, though, as Codzilla is really hungry.  A while loop lets you effortlessly "),
+                            " However, This would require a lot of lines, as bananas are far away.  A while loop lets you effortlessly "),
                     new TextSpan(
                         text: 'repeat multiple actions ',
                         style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
@@ -96,9 +98,9 @@ class BaseAppState extends State<BaseAppWidget> {
                     new TextSpan(text: "a certain "),
                     new TextSpan(
                         text: ' condition ', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
-                    new TextSpan(text: "is met. For example, we can create a loop to make Codzilla"),
+                    new TextSpan(text: "is met. For example, we can create a loop to make Codrilla"),
                     new TextSpan(
-                        text: ' repetitively eat one banana ',
+                        text: ' repetitively walk ',
                         style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
                     new TextSpan(
                       text: 'while ',

@@ -25,34 +25,26 @@ class _ExecScreenState extends State<ExecScreen> {
           return Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Visibility(
-                visible: !running,
-                child: IconButton(
-                  onPressed: () {
-                    var result = app.execNextStep();
-                    print("RESULT " + result.toString());
-                    /*setState(() {
+              IconButton(
+                onPressed: () {
+                  var result = app.execNextStep();
+                  print("RESULT " + result.toString());
+                  /*setState(() {
                     running = true;
                   });*/
-                  },
-                  icon: Icon(Icons.play_arrow),
-                  iconSize: 40,
-                  color: Colors.green,
-                ),
+                },
+                icon: Icon(Icons.play_arrow),
+                iconSize: 40,
+                color: Colors.green,
               ),
-              Visibility(
-                visible: running,
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      running = false;
-                    });
-                  },
-                  icon: Icon(Icons.stop),
-                  iconSize: 40,
-                  color: Colors.red,
-                ),
-              )
+              IconButton(
+                onPressed: () {
+                  app.cleanGrid();
+                },
+                icon: Icon(Icons.refresh),
+                iconSize: 40,
+                color: Colors.blue,
+              ),
             ],
           );
         }),

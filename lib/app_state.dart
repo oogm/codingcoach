@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 var gridSize = 6;
 
 class AppState extends ChangeNotifier {
-  Task _task = Task(walk: 3, turn: 2, ifelse: 3, whileLoop: 4);
+  Task _task = Task(walk: 3, turn: 2, ifelse: 2, whileLoop: 1);
   Task get task => _task;
   set task(Task task) {
     _task = task;
@@ -29,6 +29,8 @@ class AppState extends ChangeNotifier {
   List<GridItem> _gridItems = [
     Player(x: 0, y: 0),
     Obstacle(x: 3, y: 0),
+    Obstacle(x: 5, y: 4),
+    Obstacle(x: 0, y: 5),
     Target(x: 2, y: 3),
   ];
   List<GridItem> get gridItems => _gridItems;
@@ -117,12 +119,19 @@ class AppState extends ChangeNotifier {
 
   void clean() {
     _codeList = [];
+    cleanGrid();
+    notifyListeners();
+  }
+
+  void cleanGrid() {
     _currentEditContainer = null;
     _runListStack = null;
     _lastExecutedElement = null;
     _gridItems = [
       Player(x: 0, y: 0),
       Obstacle(x: 3, y: 0),
+      Obstacle(x: 5, y: 4),
+      Obstacle(x: 0, y: 5),
       Target(x: 2, y: 3),
     ];
     notifyListeners();
