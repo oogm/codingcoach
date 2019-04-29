@@ -25,7 +25,9 @@ class _CodeSpaceState extends State<CodeSpace> {
           ),
           child: Padding(
             padding: EdgeInsets.all(15),
-            child: _buildCode(app),
+            child: SingleChildScrollView(
+              child: _buildCode(app),
+            ),
           ),
         );
       },

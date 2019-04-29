@@ -14,17 +14,21 @@ class Action extends CodeElement {
 }
 
 class IfStructure extends CodeElement {
-  Sensor sensor;
-  var ifCode = List<CodeElement>();
-  var elseCode = List<CodeElement>();
-  bool endIf;
+  final Sensor sensor;
+  final ifCode = List<CodeElement>();
+  final elseCode = List<CodeElement>();
+  bool elseActive = false;
+  bool endIf = false;
+  CodeElement parent;
 
-  IfStructure() : super(name: "if");
+  IfStructure({this.sensor, this.parent}) : super(name: "If");
 }
 
 class WhileStructure extends CodeElement {
   Sensor sensor;
   var code = List<CodeElement>();
+  bool endWhile = false;
+  CodeElement parent;
 
-  WhileStructure() : super(name: "while");
+  WhileStructure({this.sensor, this.parent}) : super(name: "While");
 }

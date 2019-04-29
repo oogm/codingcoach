@@ -37,9 +37,10 @@ class CodeBlock extends StatelessWidget {
   Widget _buildCode() {
     var codeWidgets = code.map(_buildCodeElement).toList();
     return Padding(
-      padding: barColor != null ? EdgeInsets.all(8.0) : EdgeInsets.zero,
+      padding: barColor != null ? EdgeInsets.all(2.0) : EdgeInsets.zero,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: codeWidgets,
       ),
     );
