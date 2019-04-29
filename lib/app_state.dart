@@ -6,7 +6,7 @@ import 'package:easycode/grid/grid_item.dart';
 import 'package:easycode/task.dart';
 import 'package:flutter/material.dart';
 
-var gridSize = 7;
+var gridSize = 6;
 
 class AppState extends ChangeNotifier {
   Task _task = Task(walk: 3, turn: 2, ifelse: 3, whileLoop: 4);
@@ -26,7 +26,11 @@ class AppState extends ChangeNotifier {
   CodeElement _currentEditContainer;
   CodeElement get currentEditContainer => _currentEditContainer;
 
-  List<GridItem> _gridItems = [Player(x: 0, y: 0), Obstacle(x: 2, y: 0), Target(x: 2, y: 2)];
+  List<GridItem> _gridItems = [
+    Player(x: 0, y: 0),
+    Obstacle(x: 3, y: 0),
+    Target(x: 2, y: 3),
+  ];
   List<GridItem> get gridItems => _gridItems;
   set gridItems(List<GridItem> items) {
     _gridItems = items;
@@ -116,6 +120,11 @@ class AppState extends ChangeNotifier {
     _currentEditContainer = null;
     _runListStack = null;
     _lastExecutedElement = null;
+    _gridItems = [
+      Player(x: 0, y: 0),
+      Obstacle(x: 3, y: 0),
+      Target(x: 2, y: 3),
+    ];
     notifyListeners();
   }
 

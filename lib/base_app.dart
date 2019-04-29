@@ -8,6 +8,7 @@ class Introduction extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green, accentColor: Colors.green),
       home: BaseAppWidget(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
