@@ -19,39 +19,26 @@ class _BlockReservoirState extends State<BlockReservoir> {
   Widget build(BuildContext context) {
     return Consumer<AppState>(
       builder: (context, app) {
-        return Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Available Blocks",
-                  style: TextStyle(fontSize: 24),
-                ),
-                SizedBox(height: 10),
-                Visibility(
-                  visible: app.availableElements("Walk") > 0,
-                  child: _buildActionButton(app, "Walk"),
-                ),
-                Visibility(
-                  visible: app.availableElements("Turn") > 0,
-                  child: _buildActionButton(app, "Turn"),
-                ),
-                _buildIfButton(app),
-                _buildIfActionButtons(app),
-                Visibility(
-                  visible: app.availableElements("While") > 0,
-                  child: _buildWhileButton(app),
-                ),
-                _buildWhileActionButton(app),
-              ],
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10),
+            Visibility(
+              visible: app.availableElements("Walk") > 0,
+              child: _buildActionButton(app, "Walk"),
             ),
-          ),
+            Visibility(
+              visible: app.availableElements("Turn") > 0,
+              child: _buildActionButton(app, "Turn"),
+            ),
+            _buildIfButton(app),
+            _buildIfActionButtons(app),
+            Visibility(
+              visible: app.availableElements("While") > 0,
+              child: _buildWhileButton(app),
+            ),
+            _buildWhileActionButton(app),
+          ],
         );
       },
     );

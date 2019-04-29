@@ -36,7 +36,7 @@ class IfElseBlock extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(width: 15),
                     Text(
-                      "if",
+                      "If",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Spacer(),
@@ -46,7 +46,7 @@ class IfElseBlock extends StatelessWidget {
                     ),
                     Spacer(),
                     Text(
-                      "then",
+                      "Then",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(width: 10),
@@ -93,7 +93,7 @@ class IfElseBlock extends StatelessWidget {
               children: <Widget>[
                 SizedBox(width: 14),
                 Text(
-                  "else",
+                  "Else",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -127,7 +127,7 @@ class IfElseBlock extends StatelessWidget {
           children: <Widget>[
             SizedBox(width: 14),
             Text(
-              "end if",
+              "End If",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],

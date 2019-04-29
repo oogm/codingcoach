@@ -2,6 +2,7 @@ import 'package:easycode/app_state.dart';
 import 'package:easycode/ui/action_block.dart';
 import 'package:easycode/ui/block_reservoir.dart';
 import 'package:easycode/ui/code_space.dart';
+import 'package:easycode/ui/control_panel.dart';
 import 'package:easycode/ui/if_else_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -74,7 +75,7 @@ class MyHomePage extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: BlockReservoir(),
+            child: ControlPanel(),
           ),
         ),
       ],
