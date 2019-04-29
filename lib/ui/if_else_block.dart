@@ -1,5 +1,6 @@
+import 'package:easycode/colors.dart';
 import 'package:easycode/ui/code_block.dart';
-import 'package:easycode/ui/sensor_container.dart';
+import 'package:easycode/ui/sensor_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:easycode/code.dart';
 
@@ -15,7 +16,7 @@ class IfElseBlock extends StatelessWidget {
       children: <Widget>[
         Card(
           margin: EdgeInsets.zero,
-          color: Colors.orange[200],
+          color: CodeColors.ifElse,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(5),
@@ -39,7 +40,7 @@ class IfElseBlock extends StatelessWidget {
                   Spacer(),
                   SizedBox(
                     width: 80,
-                    child: SensorContainer(sensor: ifStructure.sensor),
+                    child: SensorBadge(sensor: ifStructure.sensor),
                   ),
                   Spacer(),
                   Text(
@@ -54,7 +55,7 @@ class IfElseBlock extends StatelessWidget {
         ),
         CodeBlock(
           code: ifStructure.ifCode,
-          barColor: Colors.orange[200],
+          barColor: CodeColors.ifElse,
         ),
         Visibility(
           visible: ifStructure.elseCode.isNotEmpty,
@@ -74,7 +75,7 @@ class IfElseBlock extends StatelessWidget {
       children: <Widget>[
         Card(
           margin: EdgeInsets.zero,
-          color: Colors.orange[200],
+          color: CodeColors.ifElse,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -98,7 +99,7 @@ class IfElseBlock extends StatelessWidget {
         ),
         CodeBlock(
           code: ifStructure.elseCode,
-          barColor: Colors.orange[200],
+          barColor: CodeColors.ifElse,
         ),
       ],
     );
@@ -107,7 +108,7 @@ class IfElseBlock extends StatelessWidget {
   Widget _buildEndIf() {
     return Card(
       margin: EdgeInsets.zero,
-      color: Colors.orange[200],
+      color: CodeColors.ifElse,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

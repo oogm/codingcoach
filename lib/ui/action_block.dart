@@ -1,4 +1,5 @@
 import 'package:easycode/code.dart';
+import 'package:easycode/colors.dart';
 import 'package:flutter/material.dart';
 
 class ActionBlock extends StatelessWidget {
@@ -9,7 +10,7 @@ class ActionBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.green[200],
+      color: CodeColors.action,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),

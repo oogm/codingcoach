@@ -1,10 +1,11 @@
+import 'package:easycode/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:easycode/code.dart';
 
-class SensorContainer extends StatelessWidget {
+class SensorBadge extends StatelessWidget {
   final Sensor sensor;
 
-  SensorContainer({this.sensor});
+  SensorBadge({this.sensor});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class SensorContainer extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       elevation: 0,
-      color: sensor == null ? Colors.white : Colors.blue[200],
+      color: sensor == null ? Colors.white : CodeColors.sensor,
       child: Center(
         child: Text(
           sensor?.name ?? "",
