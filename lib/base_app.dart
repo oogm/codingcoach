@@ -1,6 +1,10 @@
 import 'package:easycode/main.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+//import 'package:audioplayer/audioplayer.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audio_cache.dart';
+import './audio_provider.dart';
 
 class Introduction extends StatelessWidget {
   @override
@@ -21,7 +25,14 @@ class BaseAppWidget extends StatefulWidget {
 }
 
 class BaseAppState extends State<BaseAppWidget> {
-  VideoPlayerController _controller;
+  static String url =
+  'assets/audio/applause.mp3';
+     // 'https://codingwithjoe.com/wp-content/uploads/2018/03/applause.mp3';
+  AudioPlayer audioPlayer = new AudioPlayer();
+   static AudioCache player = new AudioCache();
+  AudioProvider audioProvider = new AudioProvider(url);
+  
+  VideoPlayerController _controller;  
   bool _isPlaying = false;
   List<String> _products = ['While (Codrilla is hungry) \n     Codrilla walks to banana'];
   @override
@@ -43,6 +54,7 @@ class BaseAppState extends State<BaseAppWidget> {
 
   @override
   Widget build(BuildContext context) {
+    int counter = 0;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -68,6 +80,33 @@ class BaseAppState extends State<BaseAppWidget> {
             SizedBox(
               height: 15,
             ),
+            
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50.0,
+                    margin: EdgeInsets.all(10.0),
+                    child: RaisedButton(
+                        onPressed: () {
+                          if(counter == 0)
+                          {
+                            player.play('project.wav');
+                            counter++;
+                          }
+                          
+                        },
+                        child: Text(
+                          'Listen to Text',
+                          style: new TextStyle(
+                            fontSize: 40.0,
+                          ),
+                        ),
+                        color: Colors.green),
+                  ),
+                ),
+              ],
+            ),            
             Card(
               child: RichText(
                 textAlign: TextAlign.left,
@@ -81,7 +120,7 @@ class BaseAppState extends State<BaseAppWidget> {
                   children: <TextSpan>[
                     new TextSpan(
                         text:
-                            'Codrilla the Gorilla loves bananas. And he´s hungry. To let him find a banana, we have to help him navigating thorugh the jungle to find bananas. Utilizing Actions from Level 3, we could simply guide him step by step.'),
+                            'Codrilla the Gorilla loves bananas. And he´s hungry. To let him find a banana, we have to help him navigating through the jungle to find bananas. Utilizing Actions from Level 3, we could simply guide him step by step.'),
                     // new TextSpan(
                     //   text: ' Eat Banana ',
                     //   style: new TextStyle(fontWeight: FontWeight.bold)),
@@ -156,4 +195,17 @@ class BaseAppState extends State<BaseAppWidget> {
       ),
     );
   }
+  //play() async {
+    //                        //String localUrl = await audioProvider.load();
+      //                      String localUrl = "assets/audio/applause.mp3";
+        //                    int result = await audioPlayer.play("assets/audio/applause.mp3", isLocal: true);
+                          //        }
+
+                                   playLocal() async {
+    int result = await audioPlayer.play('assets/audio/applause.mp3', isLocal: true);
+  }
+
+
+
+        
 }

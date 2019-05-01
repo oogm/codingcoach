@@ -11,8 +11,10 @@ dependencies:
     sdk: flutter
 
   provider: ^2.0.0-dev
-  video_player: ^0.6.5
-
+  video_player: ^0.6.5 
+  audioplayers: ^0.11.0
+  path_provider: ^0.5.0
+  http: ^0.12.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -23,3 +25,5 @@ flutter:
     - assets/videos/lecture.mp4
     - assets/Images/GorillaWhile.jpg
     - assets/Images/banana.png
+    - assets/applause.mp3
+    - assets/project.wav
